@@ -44,7 +44,7 @@ export type ActionResponse = {
 export async function signIn(formData: FormData): Promise<ActionResponse> {
   try {
     // Add a small delay to simulate network latency
-    await mockDelay(700)
+    await mockDelay(500)
 
     // Extract data from form
     const data = {
@@ -106,7 +106,7 @@ export async function signIn(formData: FormData): Promise<ActionResponse> {
 export async function signUp(formData: FormData): Promise<ActionResponse> {
   try {
     // Add a small delay to simulate network latency
-    await mockDelay(700)
+    await mockDelay(500)
 
     // Extract data from form
     const data = {
@@ -166,7 +166,7 @@ export async function signUp(formData: FormData): Promise<ActionResponse> {
 
 export async function signOut(): Promise<void> {
   try {
-    await mockDelay(300)
+    await mockDelay(500)
     await deleteSession()
   } catch (error) {
     console.error('Sign out error:', error)
