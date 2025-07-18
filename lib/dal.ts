@@ -11,7 +11,7 @@ export const getCurrentUser = async () => {
   if (!session) return null
 
   try {
-    await mockDelay(1000)
+    await mockDelay(500)
     const result = await db
       .select()
       .from(users)
@@ -37,7 +37,7 @@ export const getUserByEmail = async (email: string) => {
 
 export async function getIssues() {
   try {
-    await mockDelay(1000)
+    await mockDelay(500)
     const result = await db.query.issues.findMany({
       with: {
         user: true,
@@ -48,5 +48,18 @@ export async function getIssues() {
   } catch (error) {
     console.error('Error fetching issues:', error)
     throw new Error('Failed to fetch issues')
+  }
+}
+
+export const getIssue = async (id: number) => {
+  try {
+    const issue = await db.query.issues.findFirst({
+      where: eq(issues.id, id),
+      with: { user: true },
+    })
+    return issue
+  } catch (error) {
+    console.error(error)
+    return null
   }
 }
